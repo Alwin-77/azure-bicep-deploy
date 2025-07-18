@@ -22,7 +22,7 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           scope: resourcegroup
-          subscriptionId: ${{ secrets.7a6629ef-a7c1-4fc5-bb69-2268513546b3 }}
+          subscriptionId: ${{ secrets.AZURE_CREDENTIALS }}
           resourceGroupName: entegithubaction
           template: main.bicep
           parameters: storageAccountName=alwindevstore
