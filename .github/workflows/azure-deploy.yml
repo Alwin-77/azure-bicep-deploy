@@ -1,0 +1,28 @@
+name: Deploy Bicep to Azure
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy Bicep Template
+        uses: azure/arm-deploy@v1
+        with:
+          scope: resourcegroup
+          subscriptionId: ${{ secrets.7a6629ef-a7c1-4fc5-bb69-2268513546b3 }}
+          resourceGroupName: entegithubaction
+          template: main.bicep
+          parameters: storageAccountName=alwindevstore
